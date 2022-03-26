@@ -1,8 +1,7 @@
-import Enzyme, { shallow } from 'enzyme';
-import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { shallow } from 'enzyme';
 import { findByTestArr } from '../test/test.utils';
 import Congrat from './Congrat';
-Enzyme.configure({ adapter: new EnzymeAdapter() });
+import { checkProps } from '../test/test.utils';
 
 //We decided to leave the setup here instead of doing it in util because we need to pass a props to it
 const setup = (props = {}) => {
@@ -25,4 +24,9 @@ test('success message when props is true', () => {
 	const wrapper = setup({ success: true });
 	const component = findByTestArr(wrapper, 'congrat-message');
 	expect(component.text().length).not.toBe('0');
+});
+
+test('does not through warning with expected props', () => {
+	const expectedProps = { success: true };
+	checkProps(Congrat, expectedProps);
 });
