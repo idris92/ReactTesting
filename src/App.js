@@ -1,12 +1,15 @@
 import {useState} from 'react';
+import Congrat from './Congrat';
+import GuessedWords from './GuessedWords';
 import './App.css';
 
 function App() {
-	const [count, setCount]=useState(0);
-	const [error, setError]=useState('');
+	
 	return (
-		<div className="App" data-test='component-app'>
-			
+		<div className="container">
+			<h1>Jotto</h1>
+			<Congrat success={true}/>
+			<GuessedWords guessWords={[{ guessWord: 'train', letterMatchCount: 3 }]}/>
 		</div>
 	);
 }
