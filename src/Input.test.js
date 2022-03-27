@@ -8,8 +8,13 @@ const setup = () => {
 	return shallow(<Input />);
 };
 
-test('renders without errors', ()=>{
-    const wrapper=setup();
-    const Inputcomponent=findByTestArr(wrapper, 'input-component');
-    expect(Inputcomponent.length).toBe(1);
-})
+test('renders without errors', () => {
+	const wrapper = setup();
+	const Inputcomponent = findByTestArr(wrapper, 'input-component');
+	expect(Inputcomponent.length).toBe(1);
+});
+
+test('does not through warning with expected props', () => {
+	const expectedProps = { guessWord: 'truth' };
+	checkProps(Input, expectedProps);
+});
