@@ -6,7 +6,7 @@ import './App.css';
 function App() {
 	
 	return (
-		<div className="container">
+		<div data-test='component-app' className="container">
 			<h1>Jotto</h1>
 			<Congrat success={true}/>
 			<GuessedWords guessWords={[{ guessWord: 'train', letterMatchCount: 3 }]}/>
