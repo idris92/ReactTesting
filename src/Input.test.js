@@ -1,12 +1,13 @@
-import { shallow } from 'enzyme';
-import { findByTestArr } from '../test/test.utils';
+import { mount } from 'enzyme';
 import Input from './Input';
-import { checkProps } from '../test/test.utils';
+import { Provider } from 'react-redux';
+import {findByTestArr,checkProps, storeFactory } from '../test/test.utils';
 import React from 'react';
 
 //We decided to leave the setup here instead of doing it in util because we need to pass a props to it
-const setup = (success = false, secretWord = 'party') => {
-	return shallow(<Input success={success} secretWord={secretWord} />);
+const setup = (initialState={}, secretWord = 'party') => {
+	const store = storeFactory(initialState);
+	return mount(<Provider store={store}><Input secretWord={secretWord} /></Provider>);
 };
 
 //Mock module for destructured useState
@@ -17,7 +18,7 @@ const setup = (success = false, secretWord = 'party') => {
 // }));
 
 test('renders without errors', () => {
-	const wrapper = setup();
+	const wrapper = setup({success:false});
 	const Inputcomponent = findByTestArr(wrapper, 'input-component');
 	expect(Inputcomponent.length).toBe(1);
 });
@@ -37,7 +38,7 @@ describe('state controlled input field', () => {
 		//this keep the original state before being altered
 		originalUseState = React.useState;
 		React.useState = jest.fn(() => [ '', mockSetCurentGuess ]);
-		wrapper = setup();
+		wrapper = setup({success:false});
 	});
 	afterEach(() => {
 		//this reset the state after each operation
@@ -80,7 +81,7 @@ describe('renders', () => {
 		let wrapper;
 		beforeEach(() => {
 			//this set success to be true
-			wrapper = setup(true);
+			wrapper = setup({success:true});
 		});
 		test('Input component renders without errors', () => {
 			const Inputcomponent = findByTestArr(wrapper, 'input-component');
@@ -107,7 +108,7 @@ describe('renders', () => {
 		let wrapper;
 		beforeEach(() => {
 			//this set success to be true
-			wrapper = setup(false);
+			wrapper = setup({success:false});
 		});
 		test('Input component renders without errors', () => {
 			const Inputcomponent = findByTestArr(wrapper, 'input-component');

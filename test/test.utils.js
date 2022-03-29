@@ -1,5 +1,13 @@
 import checkPropTypes from 'check-prop-types';
 
+import rootReducer from '../src/reducers';
+import { createStore } from 'redux';
+
+
+export const storeFactory=(initialState)=>{
+	return createStore(rootReducer, initialState)
+}
+
 //find by Attributes
 //example const incrementButton = wrapper.find("[data-test='name']")
 //writing the reusable code
