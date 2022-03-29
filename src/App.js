@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Congrat from './Congrat';
 import GuessedWords from './GuessedWords';
 import './App.css';
 import Input from './Input';
+import {getSecretWord} from './actions'
 
 //we will be doing functional test
 //Note:either using redux or context they use the same method, the only difference is the setup(how to apply initial state)
@@ -12,6 +13,10 @@ function App() {
 	const success = false;
 	const secretWord = 'party';
 	const guessWords = [];
+
+	useEffect(()=>{
+		getSecretWord();
+	}, [])
 
 	return (
 		<div data-test="component-app" className="container">
