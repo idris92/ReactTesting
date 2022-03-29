@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ success, guessWord }) => {
+const Input = ({ success,  secretWord }) => {
 	const [ currentGuess, setCurrentGuess ] = React.useState('');
 	if (success) {
 		return <div data-test="input-component" />;
@@ -22,7 +22,7 @@ const Input = ({ success, guessWord }) => {
 					onClick={(e) => {
 						//this is used to prevent default button clicked
 						e.preventDefault();
-						//TODO: update guessword
+						//TODO: update guessWords
 						//TODO: check against secret word and update success if needed
 						setCurrentGuess('');
 					}}
@@ -35,7 +35,8 @@ const Input = ({ success, guessWord }) => {
 	);
 };
 Input.propTypes = {
-	guessWord: PropTypes.string.isRequired
+	secretWord: PropTypes.string,
+	success: PropTypes.bool,
 };
 
 export default Input;

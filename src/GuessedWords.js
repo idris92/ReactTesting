@@ -11,9 +11,9 @@ const GuessedWords = (props) => {
             )
     }else{
         const guessWordRows = props.guessWords.map((word, index)=>(
-                <tr key={index} data-test='guessed-word'>
-                    <th>{word.guessWord}</th>
-                    <th>{word.letterMatchCount}</th>
+                <tr data-test='guessed-word'  key={index} >
+                    <td>{word.guessWord}</td>
+                    <td>{word.letterMatchCount}</td>
                 </tr>
             ))
         contents = (
@@ -22,9 +22,8 @@ const GuessedWords = (props) => {
                 <table className='table table-sm'>
                     <thead className='thead-light'>
                         <tr>
-                        <td>Guess</td>
-                        <td>Matching Letter</td>
-
+                        <th>Guess</th>
+                        <th>Matching Letter</th>
                         </tr>
                     </thead>
                     <tbody>
